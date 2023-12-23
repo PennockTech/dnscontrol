@@ -55,7 +55,7 @@ Global Traffic Director feature is not supported.
 ## Development
 
 ### Debugging
-Set `DNSMADEEASY_DEBUG_HTTP` environment variable to dump all API calls made by this provider.
+Set `DNSMADEEASY_DEBUG_HTTP` environment variable to the string `1` to dump all API calls made by this provider.
 
 ### Testing
 Set `sandbox` key to any non-empty value in credentials JSON alongside `api_key` and `secret_key` to make all API calls against DNS Made Easy sandbox environment.

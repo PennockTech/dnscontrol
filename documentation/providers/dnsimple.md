@@ -45,4 +45,15 @@ DNSControl depends on a DNSimple account access token.
 
 ## Caveats
 
-None at this time
+### TXT record length
+
+The DNSimple API supports TXT records of up to 1000 "characters" (assumed to
+be octets, per DNS norms, not Unicode characters in an encoding).
+
+See <https://support.dnsimple.com/articles/txt-record/>
+
+## Development
+
+### Debugging
+Set `DNSSIMPLE_DEBUG_HTTP` environment variable non-empty to dump all API calls made by this provider.
+

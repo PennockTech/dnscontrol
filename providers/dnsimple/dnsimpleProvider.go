@@ -5,16 +5,18 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
+
+	dnsimpleapi "github.com/dnsimple/dnsimple-go/dnsimple"
+	"golang.org/x/oauth2"
 
 	"github.com/StackExchange/dnscontrol/v4/models"
 	"github.com/StackExchange/dnscontrol/v4/pkg/diff"
 	"github.com/StackExchange/dnscontrol/v4/pkg/printer"
 	"github.com/StackExchange/dnscontrol/v4/providers"
-	dnsimpleapi "github.com/dnsimple/dnsimple-go/dnsimple"
-	"golang.org/x/oauth2"
 )
 
 var features = providers.DocumentationNotes{
@@ -265,6 +267,9 @@ func (c *dnsimpleProvider) getClient() *dnsimpleapi.Client {
 
 	if c.BaseURL != "" {
 		client.BaseURL = c.BaseURL
+	}
+	if os.Getenv("DNSIMPLE_DEBUG_HTTP") != "" {
+		client.Debug = true
 	}
 	return client
 }
