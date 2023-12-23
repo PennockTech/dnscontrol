@@ -98,6 +98,12 @@ func (c *dnsimpleProvider) GetZoneRecords(domain string, meta map[string]string)
 
 		// DNSimple adds TXT records that mirror the alias records.
 		// They manage them on ALIAS updates, so pretend they don't exist
+		//
+		// nb: These records have a non-nil parent_id field, but I (Phil)
+		// couldn't find public docs on this.
+		// It's plausible that we should in fact just continue for any record
+		// where parent_id is non-nil, replacing this condition.
+		// In the absence of documentation, leaving this alone.
 		if r.Type == "TXT" && strings.HasPrefix(r.Content, "ALIAS for ") {
 			continue
 		}
